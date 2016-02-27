@@ -42,16 +42,6 @@ exports.getStaticMap = function(origin, destination) {
         }
       }
     ],
-    path: [
-      {
-        color: '0x0000ff',
-        weight: '5',
-        points: [
-          '41.139817,-77.454439',
-          '41.138621,-77.451596'
-        ]
-      }
-    ]
   };
   gmAPI.staticMap(params, function(err, binaryImage) {
     console.log(binaryImage);
