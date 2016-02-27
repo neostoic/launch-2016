@@ -2,7 +2,7 @@ var exports = module.exports = {};
 var config = require('./config');
 var request = require('request');
 
-exports.PriceEstimate = function(origin, destination) {
+exports.PriceEstimate = function(access_token, origin, destination) {
   var cb = function(err, res, body) {
     if (err) throw err;
     console.log(res);
@@ -23,7 +23,7 @@ exports.PriceEstimate = function(origin, destination) {
   request.post(options, cb);
 }
 
-exports.TimeEstimate = function(origin) {
+exports.TimeEstimate = function(access_token, origin) {
   var cb = function(err, res, body) {
     if (err) throw err;
     console.log(res);
@@ -63,6 +63,45 @@ exports.UberRequest = function (access_token, origin, destination) {
   }
   request.post(options, cb);
 }
+
+exports.UberRequestDetails = function (access_token, request_id) {
+  var cb = function(err, res, body) {
+    if (err) throw err;
+    console.log(res);
+  }
+  var options = {
+    'url': 'https://api.uber.com/v1/requests/'+request_id,
+    'headers': {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + access_token
+    },
+    'json': {
+      'request_id': request_id,
+    }
+  }
+  request.post(options, cb);
+}
+
+// exports.UberCancel = function (access_token, request_id) {
+//   var cb = function(err, res, body) {
+//     if (err) throw err;
+//     console.log(res);
+//   }
+//   var options = {
+//     'url': 'https://api.uber.com/v1/requests/'+request_id,
+//     'headers': {
+//       'Content-Type': 'application/json',
+//       'Authorization': 'Bearer ' + access_token
+//     },
+//     'json': {
+//       'request_id': request_id,
+//     }
+//   }
+//   request.post(options, cb);
+// }
+
+
+
 
 //get authorization_code (from redirect uri)
 // oauth2.getOAuthAccessToken(null, {

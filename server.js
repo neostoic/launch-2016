@@ -11,7 +11,7 @@ var Config = require('./config.json');
 var configDB = require('./database.js');
 
 // Uber functions
-// var UberAPI = require('./Uber.js');
+var UberAPI = require('./Uber.js');
 // var Uber = require('node-uber');
 // var uber = new Uber({
 //   client_id: config.uber_client_id,
@@ -53,20 +53,41 @@ app.get('/', function(req, res) {
 	res.send('');
 });
 
-app.post('/uberauth', function (req, res) {
+app.post('/UberRequest', function (req, res) {
   console.log(req);
 });
 
-app.post('/venues', function (req, res) {
+app.post('/UberDetails', function (req, res) {
+  console.log(req);
+});
+
+app.post('/UberPriceEstimate', function (req, res) {
+  console.log(req);
+});
+
+app.post('/UberTimeEstimate', function (req, res) {
+  console.log(req);
+});
+
+app.post('/FSVenues', function (req, res) {
   var body = _.pick(req.body, 'location');
-  
+
   res.send
 });
 
-app.get('/callback', function(req, res) {
-  console.log(req);
-  console.log(res);
+app.get('/FSExplore', function(req, res) {
+
 });
+
+app.post('/MapsDirections', function (req, res) {
+  console.log(req);
+});
+
+app.post('/StaticMap', function (req, res) {
+  console.log(req);
+});
+
+
 
 // app.post('/lyftcancel', function(req, res) {
 //   Lyft.LyftCancel(req, res);
