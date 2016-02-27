@@ -12,14 +12,6 @@ var configDB = require('./database.js');
 
 // Uber functions
 var UberAPI = require('./Uber.js');
-// var Uber = require('node-uber');
-// var uber = new Uber({
-//   client_id: config.uber_client_id,
-//   client_secret: config.uber_client_secret,
-//   server_token: config.uber_server_token,
-//   redirect_uri: config.uber_redirect_uri,
-//   name: config.uber_app_name
-// });
 
 // Maps functions
 var Maps = require('./maps.js');
@@ -79,8 +71,8 @@ app.post('/UberTimeEstimate', function (req, res) {
 
 app.post('/FSVenues', function (req, res) {
   var body = _.pick(req.body, 'location');
-
-  res.send
+  var venues = fsquare.Venues(body.location);
+  res.send(venues);
 });
 
 app.get('/FSExplore', function(req, res) {
@@ -88,11 +80,15 @@ app.get('/FSExplore', function(req, res) {
 });
 
 app.post('/MapsDirections', function (req, res) {
-  console.log(req);
+  var body = _.pick(req.body, 'origin', 'destination');
+  var Directions = Maps.getDirections(body.origin, body.destination);
+  res.send(Directions);
 });
 
 app.post('/StaticMap', function (req, res) {
-  console.log(req);
+  var body = _.pick(req.body, 'origin', 'destination');
+  var Map = Maps.getStaticMap(body.origin, body.destination);
+  res.send(Map);
 });
 
 

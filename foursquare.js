@@ -13,6 +13,6 @@ exports.Venues = function (location) {
 exports.Explore = function (location) {
   foursquare.exploreVenues({ near: location }, function(error, response) {
     if (error) { return console.error(error) }
-    console.log(response.response);
+    return response.response;
   });
 }
