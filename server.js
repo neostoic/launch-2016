@@ -54,19 +54,27 @@ app.get('/', function(req, res) {
 });
 
 app.post('/UberRequest', function (req, res) {
-  console.log(req);
+  var body = _.pick(req.body, 'access_token', 'origin', 'destination');
+  var req_id = UberAPI.UberRequest(body.access_token, body.origin, body.destination);
+  res.send(req_id);
 });
 
 app.post('/UberDetails', function (req, res) {
-  console.log(req);
+  var body = _.pick(req.body, 'access_token', 'request_id');
+  var details = UberAPI.UberRequestDetails(body.access_token, body.request_id);
+  res.send(details);
 });
 
 app.post('/UberPriceEstimate', function (req, res) {
-  console.log(req);
+  var body = _.pick(req.body, 'access_token', 'origin', 'destination');
+  var PriceEstimate = UberAPI.PriceEstimate(body.access_token, body.origin, body.destination);
+  res.send(PriceEstimate);
 });
 
 app.post('/UberTimeEstimate', function (req, res) {
-  console.log(req);
+  var body = _.pick(req.body, 'access_token', 'origin');
+  var timeEstimate = UberAPI.TimeEstimate(body.access_token, body.origin);
+  res.send(timeEstimate)
 });
 
 app.post('/FSVenues', function (req, res) {

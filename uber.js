@@ -5,7 +5,7 @@ var request = require('request');
 exports.PriceEstimate = function(access_token, origin, destination) {
   var cb = function(err, res, body) {
     if (err) throw err;
-    console.log(res);
+    return res;
   }
   var options = {
     'url': 'https://api.uber.com/v1/estimates/price',
@@ -26,7 +26,7 @@ exports.PriceEstimate = function(access_token, origin, destination) {
 exports.TimeEstimate = function(access_token, origin) {
   var cb = function(err, res, body) {
     if (err) throw err;
-    console.log(res);
+    return res;
   }
   var options = {
     'url': 'https://api.uber.com/v1/estimates/time',
@@ -46,7 +46,7 @@ exports.TimeEstimate = function(access_token, origin) {
 exports.UberRequest = function (access_token, origin, destination) {
   var cb = function(err, res, body) {
     if (err) throw err;
-    console.log(res);
+    return res;
   }
   var options = {
     'url': 'https://api.uber.com/v1/requests',
@@ -67,7 +67,7 @@ exports.UberRequest = function (access_token, origin, destination) {
 exports.UberRequestDetails = function (access_token, request_id) {
   var cb = function(err, res, body) {
     if (err) throw err;
-    console.log(res);
+    return res;
   }
   var options = {
     'url': 'https://api.uber.com/v1/requests/'+request_id,
