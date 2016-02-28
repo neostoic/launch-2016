@@ -23,7 +23,6 @@ var publicConfig = {
   stagger_time:       1000,
   encode_polylines:   false,
   secure:             true,
-  // proxy:              'http://localhost:3000'
 };
 var gmAPI = new GoogleMaps(publicConfig);
 
@@ -31,6 +30,9 @@ var gmAPI = new GoogleMaps(publicConfig);
 var fsquare = require('./foursquare.js');
 var Foursquare = require('foursquareVenues');
 var foursquare = new Foursquare(config.fs_client_id, config.fs_client_secret);
+
+// Expedia functions
+var expedia = require('./expedia.js');
 
 
 var app = express();
@@ -91,20 +93,6 @@ app.post('/StaticMap', function (req, res) {
   res.send(Map);
 });
 
-
-
-// app.post('/lyftcancel', function(req, res) {
-//   Lyft.LyftCancel(req, res);
-// }
-// app.post('/lyftpickup', function(req, res) {
-//   Lyft.LyftPickup(req, res);
-// }
-// app.post('/lyftlogin', function(req, res) {
-//   Lyft.LyftLogin(req, res);
-// }
-// app.post('/lyftping', function(req, res) {
-//   Lyft.lyftping(req, res);
-// }
 
 
 app.listen(PORT, function() {
